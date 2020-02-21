@@ -1,4 +1,4 @@
-# McIntyre Thumbnail Generator
+# Thumbnail Generator
 # Created By Liam Moore
 # February 19th, 2020
 
