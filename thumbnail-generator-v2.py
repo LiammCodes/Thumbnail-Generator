@@ -4,13 +4,15 @@
 
 import subprocess
 import os
+import PIL
+from PIL import Image
 
 # find current path
 cwd = os.getcwd()
 
 # take initial input
 print(".-------------------------------------------------.")
-print("|------------ Thumbnail Generator v1.0 -----------|")
+print("|------------ Thumbnail Generator v2.0 -----------|")
 print("| MAKE SURE THIS PROGRAM IS IN THE SAME FOLDER AS |")
 print("|   THE VIDEOS YOU WISH TO MAKE THUMBNAILS FOR    |")
 print("'-------------------------------------------------'")
@@ -35,14 +37,22 @@ while video_file_name != "quit":
             print("Folder created.")
         else:
             print("Thumbnails folder found.")
-
+        time = input("Enter thumbnail time: ")
         # output thumbnail
         img_output_path = cwd + '/Thumbnails/' + thumbnail_name + '.jpg'
-        subprocess.call(['ffmpeg', '-loglevel', 'quiet', '-i', video_input_path, '-vframes', '1', '-an', '-s', '640x480', '-ss', '30', img_output_path])
+        subprocess.call(['ffmpeg', '-loglevel', 'quiet', '-i', video_input_path, '-vframes', '1', '-an', '-s', '640x480', '-ss', time, img_output_path])
 
-        # completion message
-        print("Thumbnail created for " + video_input_path)
-        print("Complete!")
+
+        image = Image.open(img_output_path)
+        image.show()
+
+        if (input("Is this ok?(Y/N): ") != "Y"):
+            os.remove(img_output_path)
+            print("Deleted.")
+        else:
+            # completion message
+            print("Thumbnail created for " + video_input_path)
+            print("Complete!")
 
     # take input to continue loop
     video_file_name = input("Enter filename or type quit: ")
