@@ -9,4 +9,4 @@ Requirements:
   
   - FFMpeg (MacOS): brew install ffmpeg
   
-  - FFMPEG (Linux): apt-get install ffmpeg
+  - FFMpeg (Linux): apt-get install ffmpeg
