@@ -5,9 +5,8 @@ IMPORTANT NOTE: The script must be in the same directory as the video files you'
 
 Requirements:
 
-- Pillow
-  pip install Pillow
+  - Pillow: pip install Pillow
   
-- FFMpeg
-  MacOS: brew install ffmpeg
-  Linux: apt-get install ffmpeg
+  - FFMpeg (MacOS): brew install ffmpeg
+  
+  - FFMPEG (Linux): apt-get install ffmpeg
