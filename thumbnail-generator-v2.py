@@ -38,15 +38,17 @@ while video_file_name != "quit":
         else:
             print("Thumbnails folder found.")
         time = input("Enter thumbnail time: ")
+
         # output thumbnail
         img_output_path = cwd + '/Thumbnails/' + thumbnail_name + '.jpg'
         subprocess.call(['ffmpeg', '-loglevel', 'quiet', '-i', video_input_path, '-vframes', '1', '-an', '-s', '640x480', '-ss', time, img_output_path])
 
-
+        # preview thumbnail
         image = Image.open(img_output_path)
         image.show()
 
-        if (input("Is this ok?(Y/N): ") != "Y"):
+        # check if user is okay with thumbnail
+        if (input("Is this ok? (y/n): ") != "Y" or input("Is this ok? (Y/N): ") != "y"):
             os.remove(img_output_path)
             print("Deleted.")
         else:
