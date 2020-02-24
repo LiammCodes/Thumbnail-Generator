@@ -48,7 +48,8 @@ while video_file_name != "quit":
         image.show()
 
         # check if user is okay with thumbnail
-        if (input("Is this ok? (y/n): ") != "Y" or input("Is this ok? (Y/N): ") != "y"):
+        option = input("Is this ok? (y/n): ")
+        if (option != "Y" and option != "y"):
             os.remove(img_output_path)
             print("Deleted.")
         else:
