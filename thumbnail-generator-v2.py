@@ -7,6 +7,12 @@ import os
 import PIL
 from PIL import Image
 
+# get resolution
+def get_resolution(video):
+    resolution = subprocess.check_output(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=height,width', '-of', 'csv=s=x:p=0', video])
+    resolution = resolution.decode()
+    return resolution
+
 # find current path
 cwd = os.getcwd()
 
@@ -40,8 +46,9 @@ while video_file_name != "quit":
         time = input("Enter thumbnail time: ")
 
         # output thumbnail
+        resolution = get_resolution(video_input_path)
         img_output_path = cwd + '/Thumbnails/' + thumbnail_name + '.jpg'
-        subprocess.call(['ffmpeg', '-loglevel', 'quiet', '-i', video_input_path, '-vframes', '1', '-an', '-s', '640x480', '-ss', time, img_output_path])
+        subprocess.call(['ffmpeg', '-loglevel', 'quiet', '-i', video_input_path, '-vframes', '1', '-an', '-ss', time, img_output_path])
 
         # preview thumbnail
         image = Image.open(img_output_path)
